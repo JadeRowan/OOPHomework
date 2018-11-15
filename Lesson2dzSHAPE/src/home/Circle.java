@@ -5,11 +5,11 @@ public class Circle extends Shape {
 	private Point a;
 	private Point b;
 	private double r;
-	public Circle(double aX, double aY, double bX, double bY) {
+	public Circle(Point a, Point b) {
 		super();
-		this.a = new Point(aX, aY);
-		this.b = new Point(bX, bY);
-		this.r = Math.sqrt(Math.pow(bX - aX, 2) + Math.pow(bY - aY, 2));
+		this.a = a;
+		this.b = b;
+		this.r = a.distance(b);
 	}
 	
 	public Circle() {

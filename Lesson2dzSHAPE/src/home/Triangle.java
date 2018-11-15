@@ -6,11 +6,11 @@ public class Triangle extends Shape {
 	Point b;
 	Point c;
 
-	public Triangle(double aX, double aY, double bX, double bY, double cX, double cY) {
+	public Triangle(Point a, Point b, Point c) {
 		super();
-		this.a = new Point(aX, aY);
-		this.b = new Point(bX, bY);
-		this.c = new Point(cX, cY);
+		this.a = a;
+		this.b = b;
+		this.c = c;
 	}
 
 	public Triangle() {
@@ -19,18 +19,17 @@ public class Triangle extends Shape {
 
 	@Override
 	public double getPerimetr() {
-		double ab = Math.sqrt(Math.pow(b.getX() - a.getX(), 2) + Math.pow(b.getY() - a.getY(), 2));
-		double bc = Math.sqrt(Math.pow(c.getX() - b.getX(), 2) + Math.pow(c.getY() - b.getY(), 2));
-		double ac = Math.sqrt(Math.pow(c.getX() - a.getX(), 2) + Math.pow(c.getY() - a.getY(), 2));
-
-		return (ab + bc + ac);
+		double per = a.distance(b) + b.distance(c) + c.distance(a);
+		return per;
 	}
+	
+	
 
 	@Override
 	public double getArea() {
-		double square = 0.5 * Math.abs((a.getX() - c.getX()) * (b.getY() - c.getY()) 
-				- (b.getX() - c.getX()) * (a.getY() - c.getY()));
-		return square;
+		double p = getPerimetr()/2;
+		double area = Math.sqrt(p * (p - a.distance(b)) * (p - b.distance(c)) * (p - c.distance(a)));
+		return area;
 	}
 
 	public Point getA() {

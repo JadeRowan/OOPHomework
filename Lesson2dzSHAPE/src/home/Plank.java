@@ -7,14 +7,14 @@ public class Plank {
 	
 	
 	public void insertShape(Shape sh, int num) {
-		this.array[num] = sh;
+		this.array[num - 1] = sh;
 	}
 	
 	public void deleteShape(Shape sh, int num) {
-		this.array[num] = null;
+		this.array[num - 1] = null;
 	}
 	
-	public void plankInfo() {
-		double are
-	}
+//	public void plankInfo() {
+//		double area
+//	}
 }

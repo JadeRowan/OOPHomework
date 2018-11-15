@@ -11,6 +11,11 @@ public class Point {
 		this.y = y;
 	}
 	
+	public double distance (Point b) {
+		double side = Math.sqrt(Math.pow((b.x - this.x), 2) + Math.pow(b.y - this.y, 2));
+		return side;
+	}
+	
 	public Point() {
 		super();
 	}
