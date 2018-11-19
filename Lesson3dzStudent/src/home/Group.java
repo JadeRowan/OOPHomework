@@ -1,46 +1,55 @@
 package home;
 
-public class Group {
-	
-	private Student [] gr = new Student[10];
-	
+import java.util.Arrays;
+
+public class Group{
+
+	private Student[] gr = new Student[10];
+
 	public Group() {
 
 	}
-	
-	public void addStudent(Student s) {
-		try {
-			for (int i = 0; i < gr.length + 1; i++) {
-				if(this.gr[i] == null) {
-					this.gr[i] = s;
-					break;
-				}
-			}
-			
-		}catch(MyExeption e) {
-			System.out.println(e.getMessage());
+
+	public void addStudent(Student s) throws MyExeption {
+		if (s == null) {
+			throw new IllegalArgumentException("Null Student");
 		}
-		
-	}
-	public void removeStudent(int num) {
-		if(num != -1 && this.gr[num - 1] != null) {
-			this.gr[num - 1] = null;
-		}else {
-			System.out.println("Ошибка ввода");
-		}
-	}
-	
-	public int findStudent(String secondN) {
-		for (int i = 0; i < this.gr.length; i++) {
+
+		for (int i = 0; i < gr.length; i++) {
 			if (this.gr[i] == null) {
-				continue;
-			}
-			String name = this.gr[i].getSecondName();
-			if(name.equals(secondN)) {
-				return i + 1;
+				this.gr[i] = s;
+				return;
 			}
 		}
-		return -1;
+		throw new MyExeption();
+
+	}
+
+	public Student[] getGr() {
+		return gr;
+	}
+
+	public boolean removeStudent(long index) {
+		for (int i = 0; i < gr.length; i++) {
+			if (this.gr[i] != null && this.gr[i].getIndex() == index) {
+				this.gr[i] = null;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Student findStudent(String secondN) {
+		for (Student someSt : gr) {
+			if (someSt != null && someSt.getSecondName() == secondN) {
+				return someSt;
+			}
+		}
+		return null;
 	}
 	
+	@Override
+	public String toString() {	    
+		return "Group [gr=" + Arrays.toString(gr) + "]";
+	}
 }

@@ -1,20 +1,56 @@
 package home;
 
+import java.util.Arrays;
+
 public class Plank {
 	
 	private Shape [] array = new Shape[4];
 	
-	
-	
-	public void insertShape(Shape sh, int num) {
-		this.array[num - 1] = sh;
+	public Plank() {
+		super();
+	}
+
+	public boolean insertShape(Shape sh, int num) {
+		if (array[num - 1] == null) {
+			array[num - 1] = sh;
+			return true;
+		}
+		return false;
 	}
 	
-	public void deleteShape(Shape sh, int num) {
-		this.array[num - 1] = null;
+	public boolean deleteShape(int num) {
+		if (array[num - 1] != null) {
+			array[num - 1] = null;
+			return true;
+		}
+		return false;
 	}
 	
-//	public void plankInfo() {
-//		double area
-//	}
+	public double countArea() {
+		double area = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] != null) {
+				area += array[i].getArea();
+			}
+		}
+		return area;
+	}
+
+	@Override
+	public String toString() {
+		String text = "";
+		for (int i = 0; i < array.length; i++) {
+			if(array[i] != null) {
+				text += array[i].toString();
+			}else {
+				text += "<empty>";
+			}
+			text += System.lineSeparator();
+		}
+		text += System.lineSeparator();
+		text += countArea();
+		return text;
+	}
+	
+	
 }
