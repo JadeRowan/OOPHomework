@@ -3,10 +3,10 @@ package home;
 import java.util.Arrays;
 
 public class Phone {
-	private long number;
+	private String number;
 	private Network phNetwork;
 
-	public Phone(long number) {
+	public Phone(String number) {
 		super();
 		this.number = number;
 	}
@@ -15,37 +15,57 @@ public class Phone {
 		super();
 	}
 	
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public Network getPhNetwork() {
+		return phNetwork;
+	}
+
+	public void setPhNetwork(Network phNetwork) {
+		this.phNetwork = phNetwork;
+	}
+
 	public boolean regNumberIn(Network nw) {
-		long [] base = nw.getNumberBase();
-		
-		for (int i = 0; i < base.length; i++) {
-			if(base[i] == 0) {
-				base[i] = this.number;
-				nw.setNumberBase(base);
+		Phone[] phoneArray = nw.getBase();
+		for (int i = 0; i < nw.getBase().length; i++) {
+
+			if (phoneArray[i] == null) {
+				phoneArray[i] = this;
+				nw.setBase(phoneArray);
 				phNetwork = nw;
 				return true;
 			}
 		}
-		
-		Arrays.copyOf(base, base.length + 10);
+
+		Arrays.copyOf(phoneArray, phoneArray.length + 10);
 		return this.regNumberIn(nw);
 	}
-	
-	public void call(long l) {
-		
-		if(this.phNetwork == null){
+
+	public void call(String s) {
+
+		if (this.phNetwork == null) {
 			System.out.println("Not registred number");
 			return;
 		}
-		long [] base = phNetwork.getNumberBase();
+		Phone [] base = phNetwork.getBase();
 		
-		for (int i = 0; i < base.length; i++) {
-			if(base[i] == l) {
-				System.out.println("Din-don!");
+		for (Phone phone : base) {
+			if(phone != null && phone.number.equals(s)) {
+				phone.inputCall();
 				return;
 			}
 		}
-		System.out.println("Number is not finded");	
-		
+		System.out.println("Number is not finded");
+
+	}
+
+	public void inputCall() {
+		System.out.println("Ring-Rang!");
 	}
 }

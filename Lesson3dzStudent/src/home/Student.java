@@ -1,9 +1,10 @@
 package home;
 
-public class Student extends Human implements Comparable {
+public class Student extends Human {
 
 	private long index;
 	private String secondName;
+	private String group; 
 
 	public Student(int age, boolean sex, long index, String secondName) {
 		super(age, sex);
@@ -30,17 +31,13 @@ public class Student extends Human implements Comparable {
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
+	
+	public String getGroup() {
+		return group;
+	}
 
-	@Override
-	public int compareTo(Object o) {
-		if (o == null) {
-			return -1;
-		}
-
-		Student st = (Student) o;
-
-		return this.secondName.compareToIgnoreCase(st.getSecondName());
-
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 	@Override

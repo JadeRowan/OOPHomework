@@ -1,17 +1,17 @@
 package home;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Student vasa = new Student(18, true, 12345678, "aМкртчан");
-		Student rem = new Student(17, true, 88005553, "bНоутбуков");
-		Student gera = new Student(19, false, 10101010, "cЗевсовна");
-		Student nya = new Student(16, false, 33060309, "dКотовская");
+		Student vasa = new Student(21, true, 12345678, "Мкртчан");
+		Student rem = new Student(19, true, 88005553, "Ноутбуков");
+		Student gera = new Student(19, false, 10101010, "Зевсова");
+		Student nya = new Student(16, false, 33060309, "Котовская");
 
-		Group thoB = new Group();
+		Group thoB = new Group("КДА-702");
 
 		thoB.addStudent(rem);
 
@@ -24,7 +24,7 @@ public class Main {
 			System.out.println("Null Student");
 		}
 		try {
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 2; i++) {
 				thoB.addStudent(vasa);
 				thoB.addStudent(rem);
 				thoB.addStudent(gera);
@@ -37,8 +37,12 @@ public class Main {
 		thoB.removeStudent(vasa.getIndex());
 		thoB.removeStudent(nya.getIndex());
 		
-//		Arrays.sort(thoB.getGr());
+		thoB.interactiveAddStudent();
 		System.out.println(thoB.toString());
+		Student [] voenList = thoB.getMilitaryList();
+		for (Student st : voenList) {
+		    System.out.println(st.getSecondName());
+		}    
 	}
 
 }
